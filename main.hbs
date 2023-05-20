@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAKTHI MASALA</title>
+</head>
+<body>
+    
+    <h1>SAKTHI MASALA</h1>
+    {{message}}
+    <br>
+    {{#if edit_id}}
+     <h3>Edit</h3>
+    <form method="post" action="/update_book/{{edit_id}}">
+        <label for="">Product</label>
+        <input type="text" name="Product" value="{{edit_book.Product}}">
+        <label for="">Price</label>
+        <input type="text" name="Price" value="{{edit_book.Price}}">
+        <input type="submit" >
+    </form><br><br>
+    {{else}}
+
+    <h3>Create</h3>
+    <form method="post" action="/store_book">
+        <label for="">Product</label>
+        <input type="text" name="Product">
+        <label for="">Price</label>
+        <input type="text" name="Price">
+        <input type="submit" >
+    </form><br><br>
+
+   {{/if}}
+
+    <ul>
+        {{#each books}}
+        <li> {{this.Product}} - {{this.Price}}  <a href="/?edit_id={{this._id}}">Edit</a>  <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure want to delete?')" >Delete</a></li>
+        {{/each}}
+    </ul>
+
+</body>
+</html>
